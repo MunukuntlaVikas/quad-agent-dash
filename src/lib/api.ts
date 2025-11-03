@@ -47,7 +47,7 @@ export interface ChatRequest {
 export const api = {
   // Project Hunting
   huntProjects: async (data: ProjectHuntRequest) => {
-    const response = await fetch(`${API_BASE_URL}/projects/hunt`, {
+    const response = await fetch(`${API_BASE_URL}/api/v1/projects/hunt`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -57,7 +57,7 @@ export const api = {
   },
 
   downloadHuntReport: async (data: ProjectHuntRequest) => {
-    const response = await fetch(`${API_BASE_URL}/projects/hunt/report.docx`, {
+    const response = await fetch(`${API_BASE_URL}/api/v1/projects/hunt/report.docx`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -76,7 +76,7 @@ export const api = {
 
   // Company Analysis
   analyzeCompany: async (data: CompanyAnalysisRequest) => {
-    const response = await fetch(`${API_BASE_URL}/projects/analyze-company`, {
+    const response = await fetch(`${API_BASE_URL}/api/v1/projects/analyze-company`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -86,7 +86,7 @@ export const api = {
   },
 
   downloadCompanyAnalysis: async (data: CompanyAnalysisRequest) => {
-    const response = await fetch(`${API_BASE_URL}/projects/analyze-company/report.docx`, {
+    const response = await fetch(`${API_BASE_URL}/api/v1/projects/analyze-company/report.docx`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -105,7 +105,7 @@ export const api = {
 
   // Email
   sendEmail: async (data: EmailRequest) => {
-    const response = await fetch(`${API_BASE_URL}/sales/email`, {
+    const response = await fetch(`${API_BASE_URL}/api/v1/sales/email`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -116,7 +116,7 @@ export const api = {
 
   // Bookmarks
   addBookmark: async (data: HuntBookmarkRequest) => {
-    const response = await fetch(`${API_BASE_URL}/projects/hunt/bookmark`, {
+    const response = await fetch(`${API_BASE_URL}/api/v1/projects/hunt/bookmark`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -127,15 +127,15 @@ export const api = {
 
   getBookmarks: async (addedBy?: string) => {
     const url = addedBy 
-      ? `${API_BASE_URL}/projects/bookmarks/enhanced?added_by=${addedBy}`
-      : `${API_BASE_URL}/projects/bookmarks/enhanced`;
+      ? `${API_BASE_URL}/api/v1/projects/bookmarks/enhanced?added_by=${addedBy}`
+      : `${API_BASE_URL}/api/v1/projects/bookmarks/enhanced`;
     const response = await fetch(url);
     if (!response.ok) throw new Error('Failed to get bookmarks');
     return response.json();
   },
 
   deleteBookmark: async (id: number) => {
-    const response = await fetch(`${API_BASE_URL}/projects/bookmarks/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/v1/projects/bookmarks/${id}`, {
       method: 'DELETE',
     });
     if (!response.ok) throw new Error('Failed to delete bookmark');
@@ -143,7 +143,7 @@ export const api = {
   },
 
   downloadBookmark: async (id: number) => {
-    const response = await fetch(`${API_BASE_URL}/projects/bookmarks/${id}/download`);
+    const response = await fetch(`${API_BASE_URL}/api/v1/projects/bookmarks/${id}/download`);
     if (!response.ok) throw new Error('Failed to download bookmark');
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
@@ -158,7 +158,7 @@ export const api = {
 
   // Chat
   chat: async (data: ChatRequest) => {
-    const response = await fetch(`${API_BASE_URL}/projects/chat/enhanced`, {
+    const response = await fetch(`${API_BASE_URL}/api/v1/projects/chat/enhanced`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
